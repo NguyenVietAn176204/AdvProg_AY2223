@@ -1,18 +1,18 @@
 /*
  + B0: Nạp danh sách từ vựng (vocabulary)
- + B1: Nhận vào số lần đoán tối đa N và độ dài từ phải đoán K. 
+ + B1: Nhận vào số lần đoán tối đa N và độ dài từ phải đoán K.
     Lọc danh sách từ vựng để chỉ chọn xem xét các từ có độ dài K.
     Danh sách các kí tự đã chọn ban đầu là rỗng.
- + B2: 
-    Trong các từ đang xét, tìm kí tự xuất hiện nhiều nhất và không nằm trong các 
+ + B2:
+    Trong các từ đang xét, tìm kí tự xuất hiện nhiều nhất và không nằm trong các
     kí tự đã chọn. Chọn kí tự này.
     Nhận vào kết quả trả đoán.
- + B3: 
+ + B3:
     Nếu kết quả đoán đúng kí tự:
         Nếu đoán hết cả tử, sang B4 (thắng).
-        Nếu chưa hết, lọc để giữ chỉ giữ lại xem xét từ vựng 
-            với các từ có cả kí tự vừa đoán được tại vị trí được biêt; 
-            Rồi quay lại B2. 
+        Nếu chưa hết, lọc để giữ chỉ giữ lại xem xét từ vựng
+            với các từ có cả kí tự vừa đoán được tại vị trí được biêt;
+            Rồi quay lại B2.
     Nếu đoán sai kí tự:
         Nếu hết số lần đoán, sang B4 (thua)
         Nếu chưa hết, tiếp tục đoán bằng cách quay lại B2
@@ -26,7 +26,7 @@
 #include <set>
 #include <fstream>
 #include "simpleai.h"
- 
+
 #include "util.h"
 
 using namespace std;
@@ -62,7 +62,7 @@ int main()
     vocabulary.push_back("world");
     vocabulary.push_back("nice");
     */
-    
+
     // B1
     int maxGuess = readMaxGuess();
     int wordLen = readWordLen();
@@ -76,7 +76,7 @@ int main()
     cout << "So your secret word looks like: " << mask << endl;
 
     //cout << "Max guess: " << incorrectGuess << " Word-len: " << wordLen << " Word num: " << candidateWords.size() << endl;
-    
+
     while (true) {
         // B2
 
@@ -104,9 +104,9 @@ int main()
                 save_filter(0,candidateWords, responsedMask, nextChar);
             }
         } else {
-            incorrectGuess += 1;        
+            incorrectGuess += 1;
             cout << "Incorrect guess count: " << incorrectGuess << endl;
-        
+
             if (maxGuess <= incorrectGuess) {
                 finalMessage = "Maybe, you should give me more times to guess :(";
                 break;
